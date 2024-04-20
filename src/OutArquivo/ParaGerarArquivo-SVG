@@ -1,0 +1,2 @@
+dot -Tsvg "/Users/renanpereira/Desktop/Clone Projeto/TrabalhoAvoreBinaria/src/OutArquivo/graph.dot" -o "/Users/renanpereira/Desktop/Clone Projeto/TrabalhoAvoreBinaria/src/OutArquivo/graph.svg"
+
