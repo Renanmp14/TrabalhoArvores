@@ -1,6 +1,9 @@
 package Metodos;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Nodos {
+
     // Classe para representar os nós da árvore
     class No {
         int valor;
@@ -12,35 +15,61 @@ public class Nodos {
             this.esquerda = null;
             this.direita = null;
         }
-
-        @Override
-        public String toString() {
-            return
-                    "valor=" + valor
-                    ;
-        }
     }
 
+    // Método para adicionar um valor na Arvore
     public void inserirNaArvore(No node, int valor) {
         if (node != null) {
             if (valor < node.valor) {
                 if (node.esquerda != null) {
                     inserirNaArvore(node.esquerda, valor);
                 } else {
-                    System.out.println("Inserindo " + valor + " à esquerda de " + node.valor);
+                    //System.out.println("Inserindo " + valor + " à esquerda de " + node.valor);
                     node.esquerda = new No(valor);
                 }
             } else if (valor > node.valor) {
                 if (node.direita != null) {
                     inserirNaArvore(node.direita, valor);
                 } else {
-                    System.out.println("Inserindo " + valor + " à direita de " + node.valor);
+                    //System.out.println("Inserindo " + valor + " à direita de " + node.valor);
                     node.direita = new No(valor);
                 }
             }
         }
     }
+    //Apresenta a Arvoré
+    public void apresentaArvore(No raiz) {
+        if (raiz == null)
+            return;
 
+        Queue<No> fila = new LinkedList<>();
+        fila.add(raiz);
+
+        while (!fila.isEmpty()) {
+            int tamanho = fila.size();
+
+            for (int i = 0; i < tamanho; i++) {
+                No node = fila.poll();
+                if (node != null) {
+                    if (node.esquerda != null) {
+                        System.out.print(node.valor + " -- " + node.esquerda.valor);
+                        fila.add(node.esquerda);
+                        if (node.direita != null) {
+                            System.out.print("\n" + node.valor + " -- " + node.direita.valor);
+                            fila.add(node.direita);
+                        }
+                        System.out.println();
+                    } else if (node.direita != null) {
+                        System.out.print(node.valor + " -- " + node.direita.valor);
+                        fila.add(node.direita);
+                        System.out.println();
+                    }
+                }
+            }
+        }
+    }
+
+    //Ordenação da Arvore
     public void preOrdem(No no) {
         if (no != null) {
             System.out.println(no.valor + "");
@@ -78,6 +107,48 @@ public class Nodos {
         return null;
     }
 
+    //Remoção do valor no nó
+    public void removeValor(No raiz,int valor){
+        raiz = remover(raiz,valor);
+    }
+    private No remover (No node,int valor){
+        if (node == null)
+            return null;
+        if (valor < node.valor) {
+            node.esquerda = remover(node.esquerda, valor);
+        } else if (valor > node.valor) {
+            node.direita = remover(node.direita, valor);
+        } else {
+            if (node.esquerda == null)
+                return node.direita;
+            else if (node.direita == null)
+                return node.esquerda;
 
+            node.valor = menorValor(node.direita);
+            node.direita = remover(node.direita, node.valor);
+        }
+        return node;
+    }
+    private int menorValor(No node){
+        int menor = node.valor;
+        while (node.esquerda != null){
+            menor = node.esquerda.valor;
+            node = node.esquerda;
+        }
+        return menor;
+    }
 
+    //Pesquisar a existencia
+    public boolean buscarValor(No raiz,int valor) {
+        if (raiz == null)
+            return false;
+        if (raiz.valor == valor)
+            return true;
+        if (valor < raiz.valor)
+            return buscarValor(raiz.esquerda, valor);
+        else
+            return buscarValor(raiz.direita, valor);
+    }
 }
+
+
