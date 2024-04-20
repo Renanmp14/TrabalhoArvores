@@ -1,6 +1,7 @@
 package Metodos;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 public class Nodos {
 
@@ -149,6 +150,14 @@ public class Nodos {
         else
             return buscarValor(raiz.direita, valor);
     }
+
+    //Geran número randomico
+    public int numeroAleatorio (int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
+
 }
 
 

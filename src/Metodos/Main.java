@@ -19,7 +19,7 @@ public class Main {
 
         arvore.apresentaArvore(raiz);
 
-        //Remover Valor da Arvore
+        //Remover Valor da árvore
         /*
         System.out.println();
         System.out.println("Remoção do do valor " + 2 );
@@ -42,10 +42,12 @@ public class Main {
         System.out.println();
          */
 
+        //Busca número na árvore
+        /*
         System.out.println();
         System.out.println("Existe o número 30: " + arvore.buscarValor(raiz,30));
         System.out.println();
         System.out.println("Existe o número 100: " +arvore.buscarValor(raiz,100));
-
+        */
     }
 }
