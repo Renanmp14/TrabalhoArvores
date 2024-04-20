@@ -3,19 +3,21 @@ public class Main {
     public static void main(String[] args) {
 
         Nodos arvore = new Nodos();
-        Nodos.No raiz = arvore.new No(10);
+        Nodos.No raiz = arvore.new No(arvore.numeroAleatorio(1,100));
 
         //Ajustar a apresentação para o modelo .dot (tirar os prints, só adicionar)
-        arvore.inserirNaArvore(raiz,80);
-        arvore.inserirNaArvore(raiz,5);
-        arvore.inserirNaArvore(raiz,70);
-        arvore.inserirNaArvore(raiz,6);
-        arvore.inserirNaArvore(raiz, 2);
-        arvore.inserirNaArvore(raiz, 95);
-        arvore.inserirNaArvore(raiz, 98);
-        arvore.inserirNaArvore(raiz, 1);
-        arvore.inserirNaArvore(raiz, 100);
-        arvore.inserirNaArvore(raiz, 101);
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
+        arvore.inserirNaArvore(raiz,arvore.numeroAleatorio(1,100));
 
         arvore.apresentaArvore(raiz);
 
@@ -49,5 +51,7 @@ public class Main {
         System.out.println();
         System.out.println("Existe o número 100: " +arvore.buscarValor(raiz,100));
         */
+
+        arvore.gerarArquivoGraph(raiz);
     }
 }

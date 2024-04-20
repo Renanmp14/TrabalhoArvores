@@ -2,6 +2,9 @@ package Metodos;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Nodos {
 
@@ -157,7 +160,56 @@ public class Nodos {
         return rand.nextInt((max - min) + 1) + min;
     }
 
+    //Método utilizado para gerar o arquivo de saída
+    public void gerarArquivoGraph(No raiz) {
+        if (raiz == null)
+            return;
 
+        Queue<No> fila = new LinkedList<>();
+        fila.add(raiz);
+
+        try {
+            String caminhoArquivo = "src/OutArquivo/graph.dot";
+            File file = new File(caminhoArquivo);
+
+            // Exclui o arquivo se ele já existir
+            if (file.exists()) {
+                file.delete();
+            }
+
+            file.createNewFile();
+            FileWriter escritor = new FileWriter(file);
+
+            // Escreve no arquivo
+            escritor.write("graph {\n");
+
+            while (!fila.isEmpty()) {
+                int tamanho = fila.size();
+
+                for (int i = 0; i < tamanho; i++) {
+                    No node = fila.poll();
+                    if (node != null) {
+                        if (node.esquerda != null) {
+                            escritor.write("\t" + node.valor + " -- " + node.esquerda.valor + ";\n");
+                            fila.add(node.esquerda);
+                            if (node.direita != null) {
+                                escritor.write("\t" + node.valor + " -- " + node.direita.valor + ";\n");
+                                fila.add(node.direita);
+                            }
+                        } else if (node.direita != null) {
+                            escritor.write("\t" + node.valor + " -- " + node.direita.valor + ";\n");
+                            fila.add(node.direita);
+                        }
+                    }
+                }
+            }
+            escritor.write("}");
+            escritor.close();
+            System.out.println("Arquivo gerado com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
+        }
+    }
 }
 
 
